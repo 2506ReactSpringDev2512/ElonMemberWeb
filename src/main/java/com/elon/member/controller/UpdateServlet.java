@@ -44,6 +44,11 @@ public class UpdateServlet extends HttpServlet {
 			request.setAttribute("member", member);
 		} 
 		request.getRequestDispatcher("/WEB-INF/views/member/update.jsp").forward(request, response);
+//		else {
+//			request.setAttribute("errorMsg", "회원 정보 수정이 완료되지 않았습니다.");
+//			request.getRequestDispatcher("/WEB-INF/views/common/error.jsp")
+//			.forward(request, response);
+//		}
 	}
 
 	/**

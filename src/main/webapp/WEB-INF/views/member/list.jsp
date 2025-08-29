@@ -8,7 +8,7 @@
 <title>회원 전체 정보 출력</title>
 </head>
 <body>
-	<h1>회원 정보 출력</h1>
+	<h1>회원 전체 정보</h1>
 	<table>
 		<colgroup>
 			<col style="width: 10%;">
@@ -33,6 +33,7 @@
 				<th>주소</th>
 				<th>취미</th>
 				<th>등록날짜</th>
+				<th>수정/삭제</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -48,6 +49,12 @@
 					<td>${member.address }</td>
 					<td>${member.hobby }</td>
 					<td>${member.enrollDate }</td>
+					<td>
+					<form action="/member/delete" method="post">
+						<input type="hidden" name="memberId" value="${member.memberId }" >
+						<input type="submit" value="삭제">
+					</form>
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>
