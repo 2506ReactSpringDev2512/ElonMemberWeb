@@ -29,11 +29,13 @@ public class ListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		MemberService mService = new MemberService();
 		List<Member> mList = mService.selectList();
 		
 		if(mList.size() > 0) {
-			request.setAttribute("count", mList.size());
+			//request.setAttribute("count", mList.size());
 			request.setAttribute("mList", mList);
 			request.getRequestDispatcher("/WEB-INF/views/member/list.jsp").forward(request, response);
 		}else {
@@ -48,6 +50,9 @@ public class ListServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
+
 
 }

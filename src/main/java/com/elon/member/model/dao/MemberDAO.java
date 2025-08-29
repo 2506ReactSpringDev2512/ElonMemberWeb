@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,11 +61,38 @@ public class MemberDAO {
 		
 		while(rset.next()) {
 			Member member = new Member();
+			member.setMemberId(rset.getString("MEMBER_ID"));
 			member.setMemberName(rset.getString("MEMBER_NAME"));
+			member.setGender(rset.getString("GENDER"));
+			member.setAge(rset.getInt("AGE"));
+			member.setEmail(rset.getString("EMAIL"));
+			member.setPhone(rset.getString("PHONE"));
+			member.setAddress(rset.getString("ADDRESS"));
+			member.setHobby(rset.getString("HOBBY"));
+			java.sql.Date enrollDate = rset.getDate("ENROLL_DATE");
+			member.setEnrollDate(enrollDate);
+			
+			mList.add(member);
 		}
 		
 		return mList;
 	}
+
+	/*private Member rsetToMember(ResultSet rset) throws SQLException {
+		String memberId   = rset.getString("MEMBER_ID");
+		String memberPwd  = rset.getString("MEMBER_PWD");
+		String memberName = rset.getString("MEMBER_NAME");
+		String gender	  = rset.getString("GENDER");
+		int age			  = rset.getInt("AGE");
+		String email	  = rset.getString("EMAIL");
+		String phone	  = rset.getString("PHONE");
+		String address	  = rset.getString("ADDRESS");
+		String hobby	  = rset.getString("HOBBY");
+		java.sql.Date enrollDate	  = rset.getDate("ENROLL_DATE");
+		Member member = new Member(memberId, memberPwd, memberName
+				, gender, age, email, phone, address, hobby, enrollDate);
+		return member;
+	}*/
 
 	public int updateMember(Member member, Connection conn) throws SQLException {
 		PreparedStatement pstmt = null;

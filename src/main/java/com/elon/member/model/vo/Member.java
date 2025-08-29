@@ -1,5 +1,7 @@
 package com.elon.member.model.vo;
 
+import java.sql.Date;
+
 public class Member {
 	
 	public String memberId; 	
@@ -11,10 +13,20 @@ public class Member {
 	public String phone;
 	public String address;		
 	public String hobby;
-	
+	public Date enrollDate; 
 	public Member() {}
 
 	
+	public Date getEnrollDate() {
+		return enrollDate;
+	}
+
+
+	public void setEnrollDate(Date enrollDate) {
+		this.enrollDate = enrollDate;
+	}
+
+
 	public Member(String memberId, String memberPw, String memberName, String gender, int age, String email, String phone,
 			String address, String hobby) {
 		super();
@@ -30,6 +42,12 @@ public class Member {
 	}
 	
 	
+	public Member(String memberId2, String memberPwd, String memberName2, String gender2, int age2, String email2,
+			String phone2, String address2, String hobby2, Date enrollDate) {
+		// TODO Auto-generated constructor stub
+	}
+
+
 	public String getMemberId() {
 		return memberId;
 	}
