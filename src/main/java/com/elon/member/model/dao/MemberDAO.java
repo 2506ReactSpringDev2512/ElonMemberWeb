@@ -33,6 +33,8 @@ public class MemberDAO {
 		PreparedStatement pstmt = null;
 		String query = "DELETE FROM MEMBER_TBL WHERE MEMBER_NAME = ?";
 		pstmt = conn.prepareStatement(query);
+		pstmt.setString(1, memberName);
+		result = pstmt.executeUpdate();
 		pstmt.close();
 		conn.close();
 		return result;
