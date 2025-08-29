@@ -83,4 +83,25 @@ public class MemberDAO {
 		return result;
 	}
 
+	public List<Member> searchMember(String memberId, Connection conn) throws SQLException {
+		Statement stmt = null;
+		ResultSet rset = null;
+		List<Member> mList = null;
+		String query = "SELECT MEMBER_ID, MEMBER_NAME, EMAIL, PHONE, ADDRESS FROM MEMBER_TBL WHERE MEMBER_ID = '"+memberId+"'";
+		stmt = conn.createStatement();
+		rset = stmt.executeQuery(query);
+		mList = new ArrayList<Member>();
+
+		while (rset.next()) {
+			String memberName = rset.getString("MEMBER_NAME");
+			String Email = rset.getString("EMAIL");
+			String Phone = rset.getString("PHONE");
+			String Address = rset.getString("ADDRESS");
+
+			Member member = new Member(memberId, memberName, Email, Phone, Address);
+			mList.add(member);
+		}
+		return mList;
+	}
+
 }
