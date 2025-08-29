@@ -32,12 +32,11 @@ public class ListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		String memberId = request.getParameter("memberId");
 		MemberService mService = new MemberService();
-		List<Member> mList = mService.list();
-		System.out.println(mList);
+		List<Member> mList = mService.search(memberId);
 		if (mList.size() > 0) {
-			request.setAttribute("sList", mList);
-			request.setAttribute("count", mList.size());
+			request.setAttribute("mList", mList);
 			request.getRequestDispatcher("/WEB-INF/views/member/list.jsp").forward(request, response);
 		} else {
 			request.setAttribute("errorMsg", "회원 정보가 없습니다.");
