@@ -59,8 +59,8 @@ public class MemberDAO {
 		pstmt.setString(1, member.getMemberId());
 		pstmt.setString(2, member.getMemberPwd());
 		pstmt.setString(3, member.getMemberName());
-		pstmt.setInt(4, member.getAge());
-		pstmt.setString(5, String.valueOf(member.getGender()));
+		pstmt.setString(4, String.valueOf(member.getGender()));
+		pstmt.setInt(5, member.getAge());
 		pstmt.setString(6, member.getEmail());
 		pstmt.setString(7, member.getPhone());
 		pstmt.setString(8, member.getAddress());
