@@ -2,8 +2,13 @@ package com.elon.member.model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
+import com.elon.member.common.JDBCTemplate;
 import com.elon.member.model.vo.Member;
 
 public class MemberDAO {
@@ -38,5 +43,39 @@ public class MemberDAO {
 		pstmt.close();
 		conn.close();
 		return result;
+	}
+	
+	public List<Member> selectList(Connection conn) throws SQLException{
+		Statement stmt = null;
+		PreparedStatement pstmt;
+		ResultSet rset = null;
+		String query = "SELECT * FROM MEMBER_TBL";
+		
+		pstmt = conn.prepareStatement(query);
+		rset = pstmt.executeQuery();
+		List<Member> mList = new ArrayList<Member>();
+		while(rset.next()) {
+			Member member = new Member();
+			member.setMemberId(rset.getString("MEMBER_ID"));
+			member.setMemberPwd(rset.getString("MEMBER_PWD"));
+			member.setMemberName(rset.getString("MEMBER_NAME"));
+			member.setGender(rset.getString("GENDER"));
+			member.setAge(rset.getInt("AGE"));
+			member.setEmail(rset.getString("EMAIL"));
+			member.setPhone(rset.getString("PHONE"));
+			member.setAddress(rset.getString("ADDRESS"));
+			member.setHobby(rset.getString("HOBBY"));
+			member.setEnrollDate(rset.getDate("ENROLL_DATE"));
+			mList.add(member);
+		}
+		rset.close();
+		conn.close();
+		pstmt.close();
+		return mList;
+	}
+
+	private Member rsetToMember(ResultSet rset) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
