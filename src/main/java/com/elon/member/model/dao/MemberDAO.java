@@ -2,7 +2,11 @@ package com.elon.member.model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.elon.member.model.vo.Member;
 
@@ -58,6 +62,61 @@ public class MemberDAO {
 		pstmt.close();
 		conn.close();
 		return result;
+	}
+
+	public Member searchMember(String memberId, Connection conn) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Member member = null;
+		String query = "SELECT * FROM MEMBER_TBL WHERE MEMBER_ID = ?";
+		pstmt = conn.prepareStatement(query);
+		pstmt.setString(1, memberId);
+		rset = pstmt.executeQuery();
+		if(rset.next()) {
+			member = new Member();
+			member.setMemberId(rset.getString("MEMBER_ID"));
+			member.setMemberPwd(rset.getString("MEMBER_PWD"));
+			member.setMemberName(rset.getString("MEMBER_NAME"));
+			member.setGender(rset.getString("GENDER"));
+			member.setAge(rset.getInt("AGE"));
+			member.setEmail(rset.getString("EMAIL"));
+			member.setPhone(rset.getString("PHONE"));
+			member.setAddress(rset.getString("ADDRESS"));
+			member.setHobby(rset.getString("HOBBY"));
+			member.setEnrollDate(rset.getDate("ENROLL_DATE"));
+		}
+		rset.close();
+		pstmt.close();
+		conn.close();
+		return member;
+	}
+	
+	public List<Member> selectList(Connection conn) throws SQLException {
+		Statement stmt = null;
+		ResultSet rset = null;
+		List<Member> mList = new ArrayList<Member>();
+		String query = "SELECT * FROM MEMBER_TBL ORDER BY MEMBER_ID";
+		
+		stmt = conn.createStatement();
+		rset = stmt.executeQuery(query);
+		while(rset.next()) {
+			Member member = new Member();
+			member.setMemberId(rset.getString("MEMBER_ID"));
+			member.setMemberPwd(rset.getString("MEMBER_PWD"));
+			member.setMemberName(rset.getString("MEMBER_NAME"));
+			member.setGender(rset.getString("GENDER"));
+			member.setAge(rset.getInt("AGE"));
+			member.setEmail(rset.getString("EMAIL"));
+			member.setPhone(rset.getString("PHONE"));
+			member.setAddress(rset.getString("ADDRESS"));
+			member.setHobby(rset.getString("HOBBY"));
+			member.setEnrollDate(rset.getDate("ENROLL_DATE"));
+			mList.add(member);
+		}
+		rset.close();
+		stmt.close();
+		conn.close();
+		return mList;
 	}
 
 }

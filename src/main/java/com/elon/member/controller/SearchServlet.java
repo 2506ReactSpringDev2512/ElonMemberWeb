@@ -7,6 +7,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import com.elon.member.model.service.MemberService;
+import com.elon.member.model.vo.Member;
+
 /**
  * Servlet implementation class SearchServlet
  */
@@ -26,16 +29,31 @@ public class SearchServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		// index.jsp에서 회원검색 누르면 동작하는거
+		request.getRequestDispatcher("/WEB-INF/views/member/search.jsp")
+		.forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		// search.jsp에서 검색 버튼을 눌렀을때 동작하는거
+		request.setCharacterEncoding("UTF-8");
+		String memberId = request.getParameter("memberId");
+		MemberService mService = new MemberService();
+		Member member = mService.searchMember(memberId);
+		if(member != null) {
+			// 검색 성공
+			request.setAttribute("member", member);
+			request.getRequestDispatcher("/WEB-INF/views/member/search.jsp")
+			.forward(request, response);
+		}else {
+			// 검색 실패
+			request.setAttribute("errorMsg", "해당 회원을 찾을 수 없습니다.");
+			request.getRequestDispatcher("/WEB-INF/views/common/error.jsp")
+			.forward(request, response);
+		}
 	}
 
 }

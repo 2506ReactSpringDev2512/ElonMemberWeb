@@ -2,6 +2,7 @@ package com.elon.member.model.service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 import com.elon.member.common.JDBCTemplate;
 import com.elon.member.model.dao.MemberDAO;
@@ -49,4 +50,25 @@ public class MemberService {
 		return result;
 	}
 
+	public Member searchMember(String memberId) {
+		Member member = null;
+		try {
+			Connection conn = jdbcTemplate.getConnection();
+			member = mDao.searchMember(memberId, conn);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return member;
+	}
+	
+	public List<Member> selectList() {
+		List<Member> mList = null;
+		try {
+			Connection conn = jdbcTemplate.getConnection();
+			mList = mDao.selectList(conn);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return mList;
+	}
 }
