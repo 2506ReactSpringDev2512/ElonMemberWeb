@@ -1,11 +1,15 @@
 package com.elon.member.controller;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+
+import com.elon.member.model.service.MemberService;
+
 
 /**
  * Servlet implementation class DeleteServlet
@@ -26,16 +30,24 @@ public class DeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/member/delete.jsp");
+		view.forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String memberId = request.getParameter("memberId"); // 입력한 값을 받아옴
+		MemberService mService = new MemberService();
+		int result = mService.deleteMember(memberId);
+		if(result > 0) {
+			response.sendRedirect("/");
+		} else {
+			request.setAttribute("errorMsg", "회원정보 삭제가 완료되지 않았습니다.");
+			request.getRequestDispatcher("/WEB-INF/views/member/common/error.jsp")
+			.forward(request,response);
+		}
 	}
 
 }

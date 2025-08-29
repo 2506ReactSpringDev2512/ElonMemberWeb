@@ -26,5 +26,17 @@ public class MemberService {
 		}
 		return result;
 	}
+	public int deleteMember(String memberId) {
+		int result = 0;
+		try {
+			Connection conn = jdbcTemplate.getConnection();
+			result = mDao.deleteMember(memberId,conn);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 
 }

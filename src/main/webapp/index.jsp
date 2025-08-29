@@ -13,7 +13,7 @@
 		<li><a href="#">2. 회원 전체조회</a></li>
 		<li><a href="#">3. 회원 검색(아이디)</a></li>
 		<li><a href="#">4. 회원 정보 수정</a></li>
-		<li><a href="#">5. 회원 정보 삭제</a></li>
+		<li><a href="/member/delete">5. 회원 정보 삭제</a></li>
 	</ul>
 </body>
 </html>
