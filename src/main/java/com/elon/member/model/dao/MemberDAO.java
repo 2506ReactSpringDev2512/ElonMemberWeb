@@ -78,4 +78,32 @@ public class MemberDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public Member selectOneById(String memberId, Connection conn) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Member member = null;
+		String query = "SELECT * FROM MEMBER_TBL WHERE MEMBER_ID = ?";
+		
+		pstmt = conn.prepareStatement(query);
+		pstmt.setString(1, memberId);
+		rset = pstmt.executeQuery();
+		if(rset.next()) {
+			member = new Member();
+			member.setMemberId(rset.getString("MEMBER_ID"));
+			member.setMemberPwd(rset.getString("MEMBER_PWD"));
+			member.setMemberName(rset.getString("MEMBER_NAME"));
+			member.setGender(rset.getString("GENDER"));
+			member.setAge(rset.getInt("AGE"));
+			member.setEmail(rset.getString("EMAIL"));
+			member.setPhone(rset.getString("PHONE"));
+			member.setAddress(rset.getString("ADDRESS"));
+			member.setHobby(rset.getString("HOBBY"));
+			member.setEnrollDate(rset.getDate("ENROLL_DATE"));
+		}
+		rset.close();
+		conn.close();
+		pstmt.close();
+		return member;
+	}
 }

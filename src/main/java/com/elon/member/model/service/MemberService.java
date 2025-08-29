@@ -39,8 +39,8 @@ public class MemberService {
 			e.printStackTrace();
 		}
 		return result;
-	}
-	
+	} 
+	  
 	public List<Member> selectList(){
 		List<Member> mList = null;
 		try {
@@ -51,5 +51,22 @@ public class MemberService {
 			e.printStackTrace();
 		}
 		return mList;
+	}
+	
+	public Member selectOneById(String memberId) {
+		Member member = null;
+		Connection conn = jdbcTemplate.getConnection();
+		try {
+			member = mDao.selectOneById(memberId, conn);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return member;
+	}
+
+	public int updateMember(Member member) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }
