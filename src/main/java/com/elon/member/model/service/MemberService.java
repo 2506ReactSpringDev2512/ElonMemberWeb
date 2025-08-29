@@ -34,12 +34,12 @@ public class MemberService {
 		
 	}
 
-	public int deleteMember(String memberName) {
+	public int deleteMember(String memberId) {
 		int result = 0;
 		
 		try {
 			Connection conn = jdbcTemplate.getConnection();
-			result = mDao.deleteMember(memberName,conn);
+			result = mDao.deleteMember(memberId,conn);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -70,5 +70,18 @@ public class MemberService {
 		
 		return 0;
 	}
+
+	public Member selectOneById(String memberId) {
+		Member member = null;
+		try {
+			Connection conn = jdbcTemplate.getConnection();
+			member = mDao.selectOneById(memberId, conn);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return member;
+	}
+
+	
 }//Class MemberService
 	

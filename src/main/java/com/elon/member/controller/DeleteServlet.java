@@ -36,9 +36,9 @@ public class DeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String memberName = request.getParameter("memberName");
+		String memberId = request.getParameter("memberId");
 		MemberService mService = new MemberService();
-		int result = mService.deleteMember(memberName);
+		int result = mService.deleteMember(memberId);
 		if(result > 0) {
 			response.sendRedirect("/");
 			

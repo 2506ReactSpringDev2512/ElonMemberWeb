@@ -37,13 +37,13 @@ public class MemberDAO {
 		
 	}
 
-	public int deleteMember(String memberName, Connection conn) throws SQLException {
+	public int deleteMember(String memberId, Connection conn) throws SQLException {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String query = "DELETE FROM MEMBER_TBL WHERE MEMBER_NAME = ?";
+		String query = "DELETE FROM MEMBER_TBL WHERE MEMBER_ID = ?";
 		
 		pstmt = conn.prepareStatement(query);
-		pstmt.setString(1, memberName);
+		pstmt.setString(1, memberId);
 		result = pstmt.executeUpdate();
 		pstmt.close();
 		conn.close();
@@ -119,6 +119,39 @@ public class MemberDAO {
 		return result;
 	}
 
+	public Member selectOneById(String memberId, Connection conn) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Member member = null;
+		String query = "SELECT * FROM MEMBER_TBL WHERE MEMBER_ID = ?";
+		
+		pstmt = conn.prepareStatement(query);
+		pstmt.setString(1, memberId);
+		rset = pstmt.executeQuery();
+		if(rset.next()) {
+			member = rsetToMember(rset);
+		}
+		rset.close();
+		pstmt.close();
+		conn.close();
+ 		return member;
+	}
+
+	private Member rsetToMember(ResultSet rset) throws SQLException {
+		String memberId   = rset.getString("MEMBER_ID");
+		String memberPwd  = rset.getString("MEMBER_PWD");
+		String memberName = rset.getString("MEMBER_NAME");
+		String gender	  = rset.getString("GENDER");
+		int age			  = rset.getInt("AGE");
+		String email	  = rset.getString("EMAIL");
+		String phone	  = rset.getString("PHONE");
+		String address	  = rset.getString("ADDRESS");
+		String hobby	  = rset.getString("HOBBY");
+		java.sql.Date enrollDate	  = rset.getDate("ENROLL_DATE");
+		Member member = new Member(memberId, memberPwd, memberName
+				, gender, age, email, phone, address, hobby, enrollDate);
+		return member;
+	}
 	
 	
 	
