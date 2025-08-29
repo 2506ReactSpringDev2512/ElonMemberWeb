@@ -20,6 +20,8 @@
 			<tbody>
 				<tr>
 					<th>아이디</th>
+					<!-- readonly 를 추가하여 회원 정보 수정을 할 때 아이디를 수정하지 못하게 한다 -->
+					<!-- value 를 통해 이전 정보가 수정칸에 있도록 한다 -->
 					<td><input type="text" name="memberId" value="${member.memberId }" readonly>
 				</tr>
 				<tr>
