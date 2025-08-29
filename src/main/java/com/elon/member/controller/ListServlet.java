@@ -6,6 +6,10 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
+
+import com.elon.member.model.service.MemberService;
+import com.elon.member.model.vo.Member;
 
 /**
  * Servlet implementation class ListServlet
@@ -26,12 +30,19 @@ public class ListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		MemberService mService = new MemberService();
+		List<Member> mList = mService.selectList();
+		if(!mList.isEmpty()) {
+			request.setAttribute("mList", mList);
+			request.getRequestDispatcher("/WEB-INF/views/member/list.jsp")
+			.forward(request, response);
+		}else {
+			request.setAttribute("errorMsg", "데이터가 존재하지 않습니다.");
+			request.getRequestDispatcher("/WEB-INF/views/common/error.jsp")
+			.forward(request, response);
+		}
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	}
+	
 
 }

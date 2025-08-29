@@ -45,7 +45,7 @@ public class DeleteServlet extends HttpServlet {
 			response.sendRedirect("/");
 		} else {
 			request.setAttribute("errorMsg", "회원정보 삭제가 완료되지 않았습니다.");
-			request.getRequestDispatcher("/WEB-INF/views/member/common/error.jsp")
+			request.getRequestDispatcher("/WEB-INF/views/common/error.jsp")
 			.forward(request,response);
 		}
 	}
