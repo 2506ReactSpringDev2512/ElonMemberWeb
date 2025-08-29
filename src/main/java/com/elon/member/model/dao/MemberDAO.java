@@ -67,4 +67,22 @@ public class MemberDAO {
 		return mList;
 	}
 
+	public int updateMember(Member member, Connection conn) throws SQLException {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "UPDATE MEMBER_TBL SET MEMBER_ID = ?, MEMBER_PWD = ?, EMAIL = ?, PHONE = ?, ADDRESS = ?, HOBBY = ? WHERE MEMBER_NAME = ?";
+		pstmt = conn.prepareStatement(query);
+		pstmt.setString(1, member.getMemberId());
+		pstmt.setString(2, member.getMemberPwd());
+		pstmt.setString(3, member.getEmail());
+		pstmt.setString(4, member.getPhone());
+		pstmt.setString(5, member.getAddress());
+		pstmt.setString(6, member.getHobby());
+		pstmt.setString(7, member.getMemberName());		
+		result = pstmt.executeUpdate();
+		pstmt.close();
+		conn.close();
+		return result;
+	}
+
 }

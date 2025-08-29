@@ -14,9 +14,29 @@ public class Member {
 	private String hobby;
 	private Date enrollDate;
 	
-	public Member() {
+
+
+	public Member() {}
+	
+	
+	
+	
+
+	public Member(String memberName,String memberId, String memberPwd,  String email, String phone, String address,
+			String hobby) {
 		super();
+		this.memberId = memberId;
+		this.memberPwd = memberPwd;
+		this.memberName = memberName;
+		this.email = email;
+		this.phone = phone;
+		this.address = address;
+		this.hobby = hobby;
 	}
+
+
+
+
 
 	public Member(String memberId, String memberPwd, String memberName, String gender, int age, String email,
 			String phone, String address, String hobby) {
