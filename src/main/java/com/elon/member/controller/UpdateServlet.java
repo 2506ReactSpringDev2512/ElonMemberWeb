@@ -30,9 +30,27 @@ public class UpdateServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// index.jsp에서 회원정보수정 누르면 동작함
-		request.getRequestDispatcher("/WEB-INF/views/member/update.jsp")
-		.forward(request, response);
+		// 아이디 입력 폼에서 조회 버튼 누르면 동작함
+		String memberId = request.getParameter("memberId");
+		if(memberId != null && !memberId.isEmpty()) {
+			// 아이디로 회원 정보 조회
+			MemberService mService = new MemberService();
+			Member member = mService.searchMember(memberId);
+			if(member != null) {
+				// 조회된 회원 정보를 request에 저장
+				request.setAttribute("member", member);
+				request.getRequestDispatcher("/WEB-INF/views/member/update.jsp")
+				.forward(request, response);
+			} else {
+				// 회원이 없을 때
+				request.setAttribute("errorMsg", "데이터가 존재하지 않습니다.");
+				request.getRequestDispatcher("/WEB-INF/views/common/error.jsp")
+				.forward(request, response);
+			}
+		} else {	
+			request.getRequestDispatcher("/WEB-INF/views/member/update.jsp")
+			.forward(request, response);
+		}
 	}
 
 	/**
@@ -46,7 +64,7 @@ public class UpdateServlet extends HttpServlet {
 		String memberPwd = request.getParameter("memberPwd");
 		String memberName = request.getParameter("memberName");
 		String gender = request.getParameter("gender");
-		int age = Integer.parseInt(request.getParameter("age"));
+		int age = Integer.parseInt(request.getParameter("age").trim());
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
 		String address = request.getParameter("address");
