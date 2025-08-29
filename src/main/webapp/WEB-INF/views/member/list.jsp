@@ -36,6 +36,7 @@ table { margin: 0 auto; border-collapse: collapse; }
 				<th>주소</th>
 				<th>취미</th>
 				<th>가입일</th>
+				<th>관리</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -50,6 +51,10 @@ table { margin: 0 auto; border-collapse: collapse; }
 					<td>${member.address }</td>
 					<td>${member.hobby }</td>
 					<td>${member.enrollDate }</td>
+					<td>
+						<button onclick="location.href='/member/update?memberId=${member.memberId}'">수정</button> 
+						<button onclick="location.href='/member/delete'">삭제</button>
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>
