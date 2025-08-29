@@ -34,7 +34,7 @@ public class ListServlet extends HttpServlet {
 		List<Member> mList = mService.list();
 		System.out.println(mList);
 		if(mList.size() >0) {
-			request.setAttribute("mList", mList);
+			request.setAttribute("sList", mList);
 			request.setAttribute("count", mList.size());
 			request.getRequestDispatcher("/WEB-INF/views/member/list.jsp").forward(request, response);
 		} else {
