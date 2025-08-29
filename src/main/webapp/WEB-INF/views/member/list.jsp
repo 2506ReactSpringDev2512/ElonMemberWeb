@@ -8,7 +8,7 @@
 <title>회원 전체 정보 출력</title>
 </head>
 <body>
-	<h1>회원 전체정보 출력</h1>
+	<h1>회원 정보 출력</h1>
 	<table>
 		<colgroup>
 			<col style="width: 10%;">
@@ -39,7 +39,7 @@
 			<c:forEach items="${mList }" var="member">
 				<tr>
 					<td>${member.memberId }</td>
-					<td>${member.memberPwd }</td>
+					<td>******</td>
 					<td>${member.memberName }</td>
 					<td>${member.gender }</td>
 					<td>${member.age }</td>
@@ -52,5 +52,6 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	<a href = "/">메인페이지로 이동</a>
 </body>
 </html>

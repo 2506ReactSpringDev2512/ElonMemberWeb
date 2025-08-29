@@ -31,7 +31,16 @@ public class Member {
 	}
 	
 	
-	// 나는 안쓴것
+	public Member(String memberId, String memberPwd, String memberName, String email, String phone, String address) {
+		super();
+		this.memberId = memberId;
+		this.memberPwd = memberPwd;
+		this.memberName = memberName;
+		this.email = email;
+		this.phone = phone;
+		this.address = address;
+	}
+
 	public Member(String memberId, String memberPwd, String memberName, String gender, int age, String email,
 			String phone, String address, String hobby, Date enrollDate) {
 		super();

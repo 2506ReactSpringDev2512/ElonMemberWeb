@@ -31,6 +31,23 @@ public class MemberDAO {
 		return result;
 	}
 
+	public int modifyMember(Member member, Connection conn) throws SQLException {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "UPDATE MEMBER_TBL SET MEMBER_PWD=?, MEMBER_NAME=?, EMAIL=?, PHONE=?, ADDRESS=? WHERE MEMBER_ID=?";
+		pstmt = conn.prepareStatement(query);
+		pstmt.setString(1, member.getMemberPwd());
+		pstmt.setString(2, member.getMemberName());
+		pstmt.setString(3, member.getEmail());
+		pstmt.setString(4, member.getPhone());
+		pstmt.setString(5, member.getAddress());
+		pstmt.setString(6, member.getMemberId());
+		result = pstmt.executeUpdate();
+		pstmt.close();
+		conn.close();
+		return result;
+	}
+
 	public int deleteMember(String memberId, Connection conn) throws SQLException {
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -76,6 +93,24 @@ public class MemberDAO {
 		Member member = new Member(memberId, memberPwd, memberName
 				, gender, age, email, phone, address, hobby, enrollDate);
 		return member;
+	}
+
+	public Member selectOneById(String memberId, Connection conn) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Member member = null;
+		String query = "SELECT * FROM MEMBER_TBL WHERE MEMBER_ID = ?";
+		
+		pstmt = conn.prepareStatement(query);
+		pstmt.setString(1, memberId);
+		rset = pstmt.executeQuery();
+		if(rset.next()) {
+			member = rsetToMember(rset);
+		}
+		rset.close();
+		pstmt.close();
+		conn.close();
+ 		return member;
 	}
 
 }

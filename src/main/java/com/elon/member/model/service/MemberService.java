@@ -52,4 +52,27 @@ public class MemberService {
 		
 	}
 
+	public Member selectOneById(String memberId) {
+		Member member = null;
+		try {
+			Connection conn = jdbcTemplate.getConnection();
+			member = mDao.selectOneById(memberId, conn);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return member;
+	}
+
+	public int modifyMember(Member member) {
+		int result = 0;
+		try {
+			Connection conn = jdbcTemplate.getConnection();
+			result = mDao.modifyMember(member, conn);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 }

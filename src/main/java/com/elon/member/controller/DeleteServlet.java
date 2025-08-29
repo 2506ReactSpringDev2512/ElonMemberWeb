@@ -44,7 +44,7 @@ public class DeleteServlet extends HttpServlet {
 			response.sendRedirect("/");
 		}else {
 			// 에러페이지로 이동
-			request.setAttribute("errorMsg", "학생 정보 삭제가 완료되지 않았습니다.");
+			request.setAttribute("errorMsg", "회원 정보 삭제가 완료되지 않았습니다.");
 			request.getRequestDispatcher("/WEB-INF/views/common/error.jsp")
 			.forward(request, response);
 		}
