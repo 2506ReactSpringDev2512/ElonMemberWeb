@@ -8,6 +8,8 @@
 </head>
 <body>
 	<h1>에러페이지</h1>
-	${errorMsg }
+	<h2>${errorMsg }</h2>
+	<br>
+	<button onclick="location.href='/'">메인으로 슛~</button>
 </body>
 </html>
