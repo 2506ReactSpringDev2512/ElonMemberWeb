@@ -38,6 +38,15 @@ public class Member {
 		this.address = address;
 	}
 
+	public Member(String memberId, String memberPwd, String email, String phone, String address, String hobby) {
+		this.memberId = memberId;
+		this.memberPwd = memberPwd;
+		this.email = email;
+		this.phone = phone;
+		this.address = address;
+		this.hobby = hobby;
+	}
+
 	public String getMemberId() {
 		return memberId;
 	}
