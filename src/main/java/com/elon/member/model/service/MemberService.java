@@ -28,9 +28,21 @@ public class MemberService {
 
 	public int insertMember(Member member) {
 		int result = 0;
+		try {
+			Connection conn = jdbcTemplate.getConnection();
+			result = mDao.insertMember(member, conn);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public int deleteMember(String memberId) {
+		int result = 0;
 		Connection conn = jdbcTemplate.getConnection();
 		try {
-			result = mDao.insertMember(member, conn);
+			result = mDao.deleteMember(memberId, conn);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

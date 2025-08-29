@@ -21,10 +21,10 @@ public class MemberDAO {
 	}
 
 	public int insertMember(Member member, Connection conn) throws SQLException {
-		
 		PreparedStatement pstmt = null;
 		int result = 0;
 		String query = "INSERT INTO MEMBER_TBL VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, DEFAULT)";
+		
 		pstmt = conn.prepareStatement(query);
 		pstmt.setString(1, member.getMemberId());
 		pstmt.setString(2, member.getMemberPwd());
@@ -36,11 +36,27 @@ public class MemberDAO {
 		pstmt.setString(8, member.getAddress());
 		pstmt.setString(9, member.getHobby());
 		result = pstmt.executeUpdate();
+		
 		pstmt.close();
 		conn.close();
 		
 		return result;
 		
+	}
+
+	public int deleteMember(String memberId, Connection conn) throws SQLException {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "DELETE FROM MEMBER_TBL WHERE MEMBER_ID = ?";
+		
+		pstmt = conn.prepareStatement(query);
+		pstmt.setString(1, memberId);
+		result = pstmt.executeUpdate();
+		
+		pstmt.close();
+		conn.close();
+		
+		return 0;
 	}
 
 	
