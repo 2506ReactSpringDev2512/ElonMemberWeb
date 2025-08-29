@@ -1,11 +1,15 @@
 package com.elon.member.controller;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+
+import com.elon.member.model.service.MemberService;
+import com.elon.member.model.vo.Member;
 
 /**
  * Servlet implementation class UpdateServlet
@@ -27,7 +31,8 @@ public class UpdateServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/member/update.jsp");
+		view.forward(request, response);
 	}
 
 	/**
@@ -35,7 +40,23 @@ public class UpdateServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		String memberId = request.getParameter("memberId");
+		String memberPwd = request.getParameter("memberPwd");
+		String email = request.getParameter("email");
+		String phone = request.getParameter("phone");
+		String address = request.getParameter("address");
+		String hobby = request.getParameter("hobby");
+		
+		Member member = new Member(memberId, memberPwd, email, phone, address, hobby);
+		MemberService mService = new MemberService();
+		int result = mService.updateMember(member);
+		if(result > 0) {
+			System.out.println("수정 성공");
+			response.sendRedirect("/");
+		} else {
+			System.out.println("수정 오류");
+//			request.getRequestDispatcher("");
+		}
 	}
 
 }

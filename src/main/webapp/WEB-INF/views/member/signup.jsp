@@ -16,7 +16,7 @@
 			   여 <input type="radio" name="gender" value="F"><br>
 		나이 : <input type="number" name="age"><br>
 		이메일 : <input type="text" name="email"><br>
-		전회번호 : <input type="text" name="phone"><br>
+		전화번호 : <input type="text" name="phone"><br>
 		주소 : <input type="text" name="address"><br>
 		취미 : <input type="text" name="hobby"><br>
 		<input type="submit" value="회원가입">
