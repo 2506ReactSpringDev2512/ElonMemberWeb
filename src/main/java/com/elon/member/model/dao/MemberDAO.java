@@ -1,5 +1,40 @@
 package com.elon.member.model.dao;
 
-public class MemberDAO {
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
+import com.elon.member.model.vo.Member;
+
+public class MemberDAO {
+	public int insertMember(Member member, Connection conn) throws SQLException {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "INSERT INTO MEMBER_TBL VALUES(?,?,?,?,?,?,?,?,?,DEFAULT)";
+		pstmt = conn.prepareStatement(query);
+		pstmt.setString(1, member.getMemberId());
+		pstmt.setString(2, member.getMemberPwd());
+		pstmt.setString(3, member.getMemberName());
+		pstmt.setString(4, member.getGender());
+		pstmt.setInt(5, member.getAge());
+		pstmt.setString(6, member.getEmail());
+		pstmt.setString(7, member.getPhone());
+		pstmt.setString(8, member.getAddress());
+		pstmt.setString(9, member.getHobby());
+		result = pstmt.executeUpdate();
+		pstmt.close();
+		conn.close();
+		
+		return result;
+	}
+	
+	public int deleteMember(String memberName, Connection conn) throws SQLException {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = "DELETE FROM MEMBER_TBL WHERE MEMBER_NAME = ?";
+		pstmt = conn.prepareStatement(query);
+		pstmt.close();
+		conn.close();
+		return result;
+	}
 }
