@@ -12,8 +12,11 @@ public class Member {
 	private String phone;
 	private String address;
 	private String hobby;
+	private Date enrollDate;
 
-	public Member() {
+	public Member(String memberId, String memberPwd) {
+		this.memberId = memberId;
+		this.memberPwd = memberPwd;
 	}
 
 	public Member(String memberId, String memberPwd, String memberName, String gender, int age, String email,
@@ -45,6 +48,31 @@ public class Member {
 		this.phone = phone;
 		this.address = address;
 		this.hobby = hobby;
+	}
+
+	public Member(String memberId, String memberPwd, String memberName, String email, String phone, String address, String hobby) {
+		this.memberId = memberId;
+		this.memberPwd = memberPwd;
+		this.memberName = memberName;
+		this.email = email;
+		this.phone = phone;
+		this.address = address;
+		this.hobby = hobby;
+	}
+
+	public Member(String memberId, String memberPwd, String memberName, String gender, int age, String email,
+			String phone, String address, String hobby, Date enrollDate) {
+		super();
+		this.memberId = memberId;
+		this.memberPwd = memberPwd;
+		this.memberName = memberName;
+		this.gender = gender;
+		this.age = age;
+		this.email = email;
+		this.phone = phone;
+		this.address = address;
+		this.hobby = hobby;
+		this.setEnrollDate(enrollDate);
 	}
 
 	public String getMemberId() {
@@ -124,6 +152,14 @@ public class Member {
 		return "Member [memberId=" + memberId + ", memberPwd=" + memberPwd + ", memberName=" + memberName + ", gender="
 				+ gender + ", age=" + age + ", email=" + email + ", phone=" + phone + ", address=" + address
 				+ ", hobby=" + hobby + "]";
+	}
+
+	public Date getEnrollDate() {
+		return enrollDate;
+	}
+
+	public void setEnrollDate(Date enrollDate) {
+		this.enrollDate = enrollDate;
 	}
 
 }

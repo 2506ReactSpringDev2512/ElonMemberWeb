@@ -1,6 +1,5 @@
 package com.elon.member.controller;
 
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -29,7 +28,16 @@ public class DeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/views/member/delete.jsp").forward(request, response);
+		String memberId = request.getParameter("memberId");
+		MemberService mService = new MemberService();
+		int result = mService.delete(memberId);
+		if(result > 0) {
+			response.sendRedirect("/");
+		}else {
+			request.setAttribute("errorMsg", "회원 정보 삭제에 실패하였습니다.");
+			request.getRequestDispatcher("/WEB-INF/views/common/error.jsp")
+			.forward(request, response);
+		}
 	}
 
 	/**

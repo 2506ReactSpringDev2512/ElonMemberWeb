@@ -1,12 +1,12 @@
 package com.elon.member.controller;
 
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 import com.elon.member.model.service.MemberService;
 import com.elon.member.model.vo.Member;
@@ -30,6 +30,10 @@ public class UpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String memberId = request.getParameter("memberId");
+		MemberService mService = new MemberService();
+		List<Member> mList = mService.search(memberId);
+		request.setAttribute("mList", mList);
 		request.getRequestDispatcher("/WEB-INF/views/member/update.jsp").forward(request, response);
 	}
 
@@ -47,7 +51,7 @@ public class UpdateServlet extends HttpServlet {
 		MemberService mService = new MemberService();
 		int result = mService.update(member);
 		if(result > 0) {
-			response.sendRedirect("/");
+			response.sendRedirect("/member/login");
 		}else {
 			request.setAttribute("errorMsg", "회원 정보가 수정되지 않았습니다.");
 			request.getRequestDispatcher("/WEB-INF/views/common/error.jsp")

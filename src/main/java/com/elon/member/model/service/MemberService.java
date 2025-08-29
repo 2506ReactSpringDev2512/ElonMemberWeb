@@ -76,4 +76,16 @@ public class MemberService {
 		}
 		return mList;
 	}
+
+	public List<Member> login(Member member) {
+		List<Member> mList = null;
+		try {
+			Connection conn = jdbcTemplate.getConnection();
+			mList = mDao.loginMember(member, conn);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return mList;
+	}
 }

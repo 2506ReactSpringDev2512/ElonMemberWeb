@@ -47,7 +47,7 @@ public class SearchServlet extends HttpServlet {
 			request.setAttribute("count", mList.size());
 			request.getRequestDispatcher("/WEB-INF/views/member/search.jsp").forward(request, response);
 		} else {
-			request.setAttribute("errorMsg", "회원 정보가 없습니다.");
+			request.setAttribute("errorMsg", "해당 회원 정보가 없습니다.");
 			request.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(request, response);
 		}
 	}

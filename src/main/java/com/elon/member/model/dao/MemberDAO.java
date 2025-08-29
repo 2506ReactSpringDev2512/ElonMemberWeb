@@ -47,22 +47,29 @@ public class MemberDAO {
 	public List<Member> listMember(Connection conn) throws SQLException {
 		Statement stmt = null;
 		ResultSet rset = null;
-		List<Member> mList = null;
-		String query = "SELECT MEMBER_ID, MEMBER_NAME, EMAIL, PHONE, ADDRESS FROM MEMBER_TBL";
+		List<Member> mList = new ArrayList<Member>();
+		String query = "SELECT * FROM MEMBER_TBL ORDER BY MEMBER_ID";
+		
 		stmt = conn.createStatement();
 		rset = stmt.executeQuery(query);
-		mList = new ArrayList<Member>();
-
-		while (rset.next()) {
-			String memberId = rset.getString("MEMBER_ID");
+		while(rset.next()) {
+			String memberId   = rset.getString("MEMBER_ID");
+			String memberPwd  = rset.getString("MEMBER_PWD");
 			String memberName = rset.getString("MEMBER_NAME");
-			String Email = rset.getString("EMAIL");
-			String Phone = rset.getString("PHONE");
-			String Address = rset.getString("ADDRESS");
-
-			Member member = new Member(memberId, memberName, Email, Phone, Address);
+			String gender	  = rset.getString("GENDER");
+			int age			  = rset.getInt("AGE");
+			String email	  = rset.getString("EMAIL");
+			String phone	  = rset.getString("PHONE");
+			String address	  = rset.getString("ADDRESS");
+			String hobby	  = rset.getString("HOBBY");
+			java.sql.Date enrollDate	  = rset.getDate("ENROLL_DATE");
+			Member member = new Member(memberId, memberPwd, memberName
+					, gender, age, email, phone, address, hobby, enrollDate);
 			mList.add(member);
 		}
+		rset.close();
+		stmt.close();
+		conn.close();
 		return mList;
 	}
 
@@ -87,20 +94,50 @@ public class MemberDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		List<Member> mList = null;
-		String query = "SELECT MEMBER_ID, MEMBER_NAME, EMAIL, PHONE, ADDRESS FROM MEMBER_TBL WHERE MEMBER_ID = ?";
+		String query = "SELECT MEMBER_ID, MEMBER_PWD, MEMBER_NAME, EMAIL, PHONE, ADDRESS, HOBBY FROM MEMBER_TBL WHERE MEMBER_ID = ?";
 		pstmt = conn.prepareStatement(query);
 		pstmt.setString(1, memberId);
 		rset = pstmt.executeQuery();
 		mList = new ArrayList<Member>();
 
 		while (rset.next()) {
+			String memberPwd = rset.getString("MEMBER_PWD");
 			String memberName = rset.getString("MEMBER_NAME");
 			String Email = rset.getString("EMAIL");
 			String Phone = rset.getString("PHONE");
 			String Address = rset.getString("ADDRESS");
+			String Hobby = rset.getString("HOBBY");
 
-			Member member = new Member(memberId, memberName, Email, Phone, Address);
+			Member member = new Member(memberId, memberPwd, memberName, Email, Phone, Address, Hobby);
 			mList.add(member);
+		}
+		return mList;
+	}
+
+	public List<Member> loginMember(Member member, Connection conn) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<Member> mList = null;
+		String query = "SELECT * FROM MEMBER_TBL WHERE MEMBER_ID=? AND MEMBER_PWD=?";
+		pstmt = conn.prepareStatement(query);
+		pstmt.setString(1, member.getMemberId());
+		pstmt.setString(2, member.getMemberPwd());
+		rset = pstmt.executeQuery();
+		mList = new ArrayList<Member>();
+		
+		while(rset.next()) {
+			String memberId = rset.getString("MEMBER_ID");
+			String memberPwd = rset.getString("MEMBER_PWD");
+			String memberName = rset.getString("MEMBER_NAME");
+			String gender = rset.getString("GENDER");
+			int age = rset.getInt("AGE");
+			String email = rset.getString("EMAIL");
+			String phone = rset.getString("PHONE");
+			String address = rset.getString("ADDRESS");
+			String hobby = rset.getString("HOBBY");
+			
+			Member loginMember = new Member(memberId, memberPwd, memberName, gender, age, email, phone, address, hobby);
+			mList.add(loginMember);
 		}
 		return mList;
 	}
