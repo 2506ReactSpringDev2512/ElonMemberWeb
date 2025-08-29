@@ -42,10 +42,19 @@ public class Member {
 	}
 	
 	
-	public Member(String memberId2, String memberPwd, String memberName2, String gender2, int age2, String email2,
-			String phone2, String address2, String hobby2, Date enrollDate) {
-		// TODO Auto-generated constructor stub
-	}
+	public Member(String memberId, String memberPw, String memberName, String gender, int age, String email,
+            String phone, String address, String hobby, Date enrollDate) {
+  this.memberId = memberId;
+  this.memberPw = memberPw;
+  this.memberName = memberName;
+  this.gender = gender;
+  this.age = age;
+  this.email = email;
+  this.phone = phone;
+  this.address = address;
+  this.hobby = hobby;
+  this.enrollDate = enrollDate;
+}
 
 
 	public String getMemberId() {

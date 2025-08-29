@@ -28,7 +28,23 @@ public class UpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/views/member/update.jsp").forward(request, response);
+		// update.jsp 에서 아이디 입력창에 아이디를 입력하면
+		String memberId = request.getParameter("memberId");
+		MemberService mService = new MemberService();
+		// 입력한 아이디로 DB에 데이터가 존재하는지 확인
+		Member member = mService.selectOneById(memberId);
+		String path = "/WEB-INF/views/member/update.jsp";
+		if(member != null) {
+			// update.jsp 에서 member를 member키로 사용할 수 있도록
+			// request 객체에 저장해줌
+			request.setAttribute("member", member);
+			path = "/WEB-INF/views/member/update.jsp";
+		}/*else {
+			request.setAttribute("noDataFound", "데이터가 존재하지 않습니다.");
+			//path = "/WEB-INF/views/common/error.jsp";
+		}*/
+		
+		request.getRequestDispatcher(path).forward(request, response);
 	
 	}
 

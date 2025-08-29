@@ -139,7 +139,7 @@ public class MemberDAO {
 
 	private Member rsetToMember(ResultSet rset) throws SQLException {
 		String memberId   = rset.getString("MEMBER_ID");
-		String memberPwd  = rset.getString("MEMBER_PWD");
+		String memberPwd  = rset.getString("MEMBER_PW");
 		String memberName = rset.getString("MEMBER_NAME");
 		String gender	  = rset.getString("GENDER");
 		int age			  = rset.getInt("AGE");
