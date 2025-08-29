@@ -32,6 +32,14 @@ public class Member {
 	}
 
 
+	public Member(String memberId, String memberName, String email, String phone, String address) {
+		this.memberId = memberId;
+		this.memberName = memberName;
+		this.email = email;
+		this.phone = phone;
+		this.address = address;
+	}
+
 	public String getMemberId() {
 		return memberId;
 	}
