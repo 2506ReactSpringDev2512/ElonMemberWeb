@@ -40,13 +40,12 @@ public class MemberService {
 		return mList;
 	}
 
-	public int deleteMember(String memberName) {
+	public int deleteMember(String memberId) {
 		int result = 0;
 		try {
-			Connection conn = jdbcTemplate.getConnection(); // JDBCTemplate이 연결 생성
-			result = mDao.deleteMember(memberName, conn);	// 삭제할 이름과 연결을 DAO 전달
-		} catch (Exception e) {
-			// TODO: handle exception
+			Connection conn = jdbcTemplate.getConnection();
+			result = mDao.deleteMember(memberId, conn);
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return result;

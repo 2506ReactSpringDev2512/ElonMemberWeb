@@ -66,13 +66,14 @@ public class MemberDAO {
 		return member;
 	}
 
-	public int deleteMember(String memberName, Connection conn) throws SQLException {
+	public int deleteMember(String memberId, Connection conn) throws SQLException {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String query = "DELETE FROM MEMBER_TBL WHERE MEMBER_NAME = ?";
-		pstmt = conn.prepareStatement(query); 
-		pstmt.setString(1, memberName); 
-		pstmt.close(); 
+		String query = "DELETE FROM MEMBER_TBL WHERE MEMBER_ID = ?";
+		pstmt = conn.prepareStatement(query);
+		pstmt.setString(1, memberId);
+		result = pstmt.executeUpdate();
+		pstmt.close();
 		conn.close();
 		return result;
 	}
