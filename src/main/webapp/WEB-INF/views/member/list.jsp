@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원 목록</title>
 </head>
 <body>
+	<h1>회원 목록</h1>
 
 </body>
 </html>
