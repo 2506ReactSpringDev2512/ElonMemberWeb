@@ -57,6 +57,9 @@ public class SignUpServlet extends HttpServlet {
 			System.out.println("성공");
 			return;
 		}else {
+			request.setAttribute("errorMsg", "회원 등록이 완료되지 않았습니다");
+			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/error.jsp");
+			view.forward(request, response);
 			System.out.println("실패");
 		}
 	}

@@ -1,5 +1,6 @@
 package com.elon.member.controller;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -38,7 +39,10 @@ public class ListServlet extends HttpServlet {
 			request.getRequestDispatcher("/WEB-INF/views/member/list.jsp")
 			.forward(request, response);
     	}else {
-    		System.out.println("실패");
+			request.setAttribute("errorMsg", "회원 리스트가 없습니다");
+			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/error.jsp");
+			view.forward(request, response);
+			System.out.println("실패");
     	}
 	}
 

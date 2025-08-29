@@ -54,4 +54,28 @@ public class MemberService {
 		return result;
 	}
 
+	public int updateMember(Member member) {
+		int result = 0;
+		try {
+			Connection conn = jdbcTemplate.getConnection();
+			result = mDAO.updateMemberInfo(member , conn);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public List<Member> searchOne(String memberId, String memberPwd) {
+		List<Member> mList = null;
+		try {
+			Connection conn = jdbcTemplate.getConnection();
+			mList = mDAO.searchOnesInfo(memberId ,memberPwd, conn);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return mList;
+	}
+
 }
