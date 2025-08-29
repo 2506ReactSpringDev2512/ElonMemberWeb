@@ -51,7 +51,7 @@ public class SignUpServlet extends HttpServlet {
             System.out.println("trim() 후 바이트 길이: " + gender.getBytes().length);
             System.out.println("------------------------");
 		}
-		int age = Integer.parseInt("age");
+		int age = Integer.parseInt(request.getParameter("age"));
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
 		String address = request.getParameter("address");

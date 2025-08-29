@@ -51,7 +51,6 @@ public class Member {
 		this.phone = phone;
 		this.address = address;
 		this.hobby = hobby;
-		this.enrollDate = enrollDate;
 	}
 	// 메소드
 	// getter/setter
