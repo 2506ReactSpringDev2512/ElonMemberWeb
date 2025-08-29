@@ -49,5 +49,19 @@ public class MemberService {
 		}
 		return result;
 	}
+
+	public int searchMember(String memberId) {
+		int result = 0;
+		
+		Connection conn = jdbcTemplate.getConnection();
+		try {
+			result = mDao.searchMember(memberId, conn);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 	
 }

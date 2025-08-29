@@ -56,7 +56,22 @@ public class MemberDAO {
 		pstmt.close();
 		conn.close();
 		
-		return 0;
+		return result;
+	}
+
+	public int searchMember(String memberId, Connection conn) throws SQLException {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "SELECT * FROM WHERE MEMBER_ID = ?";
+		
+		pstmt = conn.prepareStatement(query);
+		pstmt.setString(1, memberId);
+		result = pstmt.executeUpdate();
+		
+		pstmt.close();
+		conn.close();
+		
+		return result;
 	}
 
 	
