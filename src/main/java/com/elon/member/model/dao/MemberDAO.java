@@ -1,6 +1,7 @@
 package com.elon.member.model.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -84,5 +85,31 @@ public class MemberDAO {
 		conn.close();
 		return result;
 	}
+
+
+	public Member selectOneById(String memberId, Connection conn) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int result = 0;
+		String query = "SELECT * FROM MEMBER_TBL WHERE MEMBER_ID = ?";
+		pstmt = conn.prepareStatement(query);
+		pstmt.setString(1, memberId);
+		rset = pstmt.executeQuery();
+		Member member = null;
+		String memberPwd = rset.getString("MEMBER_PWD");
+		String memberName = rset.getString("MEMBER_NAME");
+		String gender = rset.getString("GENDER");
+		int age = rset.getInt("AGE");
+		String email = rset.getString("EMAIL");
+		String phone = rset.getString("PHONE");
+		String adderss = rset.getString("ADDRESS");
+		String hobby = rset.getString("HOBBY");
+		Date enrollDate = rset.getDate("ENROLL_DATE");
+		member = new Member(memberId, memberPwd, memberName, gender, age, email, phone, adderss, hobby, enrollDate);
+		pstmt.close();
+		rset.close();
+		return member;
+	}
+
 
 }
