@@ -53,5 +53,4 @@ public class MemberService {
 		return mList;
 	}
 
-
 }

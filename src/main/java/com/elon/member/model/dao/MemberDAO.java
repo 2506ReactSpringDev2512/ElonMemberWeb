@@ -52,19 +52,18 @@ public class MemberDAO {
 		stmt = conn.createStatement();
 		rset = stmt.executeQuery(query);
 		mList = new ArrayList<Member>();
-		
+
 		while (rset.next()) {
 			String memberId = rset.getString("MEMBER_ID");
 			String memberName = rset.getString("MEMBER_NAME");
 			String Email = rset.getString("EMAIL");
 			String Phone = rset.getString("PHONE");
 			String Address = rset.getString("ADDRESS");
-			
+
 			Member member = new Member(memberId, memberName, Email, Phone, Address);
 			mList.add(member);
 		}
 		return mList;
 	}
-
 
 }
