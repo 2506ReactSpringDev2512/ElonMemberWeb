@@ -41,6 +41,16 @@ public class Member {
 		this.hobby = hobby;
 	}
 	
+	public Member(String memberId, String memberPw, String email, String phone, String address, String hobby) {
+		super();
+		this.memberId = memberId;
+		this.memberPw = memberPw;
+		this.email = email;
+		this.phone = phone;
+		this.address = address;
+		this.hobby = hobby;
+	}
+	
 	
 	public Member(String memberId, String memberPw, String memberName, String gender, int age, String email,
             String phone, String address, String hobby, Date enrollDate) {

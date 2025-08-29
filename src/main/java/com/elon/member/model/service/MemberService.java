@@ -68,7 +68,7 @@ public class MemberService {
 			e.printStackTrace();
 		}
 		
-		return 0;
+		return result;
 	}
 
 	public Member selectOneById(String memberId) {

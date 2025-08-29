@@ -97,25 +97,27 @@ public class MemberDAO {
 	public int updateMember(Member member, Connection conn) throws SQLException {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String query = "UPDATE MEMBER_TBL SET MEMBER_ID = ?, MEMBER_PW = ? ,AGE=?,GENDER=?,EMAIL=?,PHONE=?,ADDRESS=?,HOBBY=? WHERE MEMBER_NAME = ?";
-		
+		String query = "UPDATE MEMBER_TBL SET MEMBER_PW = ?, EMAIL = ?, PHONE = ?, ADDRESS = ?, HOBBY = ? WHERE MEMBER_ID = ?";
 		pstmt = conn.prepareStatement(query);
-		pstmt.setString(1, member.getMemberId());
-		pstmt.setString(2, member.getMemberPw());
-		pstmt.setString(3, member.getMemberName());
-		pstmt.setInt(4, member.getAge());
-		pstmt.setString(5, String.valueOf(member.getGender()));
-		pstmt.setString(6, member.getEmail());
-		pstmt.setString(7, member.getPhone());
-		pstmt.setString(8, member.getAddress());
-		pstmt.setString(9, member.getHobby());
 		
+		 // 파라미터 설정 전 로그
+//	    System.out.println("업데이트 대상 MEMBER_ID: " + member.getMemberId());
+//	    System.out.println("PW: " + member.getMemberPw());
+//	    System.out.println("Email: " + member.getEmail());
+//	    System.out.println("Phone: " + member.getPhone());
+//	    System.out.println("Address: " + member.getAddress());
+//	    System.out.println("Hobby: " + member.getHobby());
+	    
+	    
+		pstmt.setString(1, member.getMemberPw());
+		pstmt.setString(2, member.getEmail());
+		pstmt.setString(3, member.getPhone());
+		pstmt.setString(4, member.getAddress());
+		pstmt.setString(5, member.getHobby());
+		pstmt.setString(6, member.getMemberId());
 		result = pstmt.executeUpdate();
-		
-		
 		pstmt.close();
 		conn.close();
-		
 		return result;
 	}
 

@@ -38,14 +38,11 @@ public class UpdateServlet extends HttpServlet {
 			// update.jsp 에서 member를 member키로 사용할 수 있도록
 			// request 객체에 저장해줌
 			request.setAttribute("member", member);
-			path = "/WEB-INF/views/member/update.jsp";
-		}/*else {
-			request.setAttribute("noDataFound", "데이터가 존재하지 않습니다.");
-			//path = "/WEB-INF/views/common/error.jsp";
-		}*/
+			//path = "/WEB-INF/views/member/update.jsp";
+		}
 		
-		request.getRequestDispatcher(path).forward(request, response);
-	
+		request.getRequestDispatcher("/WEB-INF/views/member/update.jsp").forward(request, response);
+
 	}
 
 	/**
@@ -54,26 +51,18 @@ public class UpdateServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String memberId 	= request.getParameter("memberId");
 		String memberPw		= request.getParameter("memberPw");
-		String memberName 	= request.getParameter("memberName");
-		String gender 		= request.getParameter("gender");
-		if(gender != null) {
-			System.out.println("GENDER DUBUGGING");
-			System.out.println("받은 값 (원본): [" + gender + "]");
-			System.out.println("받은 값의 바이트 길이 : " + gender.getBytes().length);
-			
-			gender = gender.trim();
-			System.out.println("trim() 후 값: [" + gender + "]");
-            System.out.println("trim() 후 바이트 길이: " + gender.getBytes().length);
-            System.out.println("------------------------");
-		}
-		int age				= Integer.parseInt(request.getParameter("age"));
 		String email		= request.getParameter("email");
 		String phone		= request.getParameter("phone");
 		String address		= request.getParameter("address");
 		String hobby		= request.getParameter("hobby");
 		
-		Member member = new Member(memberId,memberPw, memberName, gender, age, email, phone,
-				 					address, hobby);
+		 // 디버그 로그
+//	    System.out.println("doPost에서 넘어온 값:");
+//	    System.out.println("memberId=" + memberId + ", memberPw=" + memberPw + ", email=" + email);
+//	    System.out.println("phone=" + phone + ", address=" + address + ", hobby=" + hobby);
+
+		
+		Member member = new Member(memberId, memberPw, email, phone, address, hobby);
 		MemberService mService = new MemberService();
 		int result = mService.updateMember(member);
 		if(result > 0 ) {
