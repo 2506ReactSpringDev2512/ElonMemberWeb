@@ -31,11 +31,11 @@ public class ListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		MemberService mService = new MemberService();
-		List<Member> mList = mService.selectList();
+		MemberService mService = new MemberService(); // DB 연결과 데이터를 가져와서 
+		List<Member> mList = mService.selectList(); // 가져온 데이터를 mList에 넣고
 		
 		if(mList.size() > 0) {
-			request.setAttribute("count", mList.size());
+			request.setAttribute("count", mList.size()); // 
 			request.setAttribute("mList", mList);
 			request.getRequestDispatcher("/WEB-INF/views/member/list.jsp")
 			.forward(request, response);

@@ -71,10 +71,31 @@ public class MemberDAO {
 			member.setHobby(rset.getString("HOBBY"));
 			member.setEnrollDate(rset.getDate("ENROLL_DATE"));
 			mList.add(member);
-			
 		}
 		
 		return mList;
+	}
+
+	public int updateMember(Member member, Connection conn) throws SQLException {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "UPDATE MEMBER_TBL SET MEMBER_PWD = ?, EMAIL = ?, "
+				+ "PHONE = ?, ADDRESS = ?, HOBBY = ? WHERE MEMBER_ID = ?";
+		pstmt = conn.prepareStatement(query);
+		
+		pstmt.setString(1, member.getMemberPwd());
+		pstmt.setString(2, member.getEmail());
+		pstmt.setString(3, member.getPhone());
+		pstmt.setString(4, member.getAddress());
+		pstmt.setString(5, member.getHobby());
+		pstmt.setString(6, member.getMemberId());
+		
+		result = pstmt.executeUpdate();
+		
+		pstmt.close();
+		conn.close();
+		
+		return result;
 	}
 
 }

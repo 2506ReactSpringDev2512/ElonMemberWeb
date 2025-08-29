@@ -15,7 +15,7 @@ public class JDBCTemplate {
 	private JDBCTemplate() {}
 	
 	public static JDBCTemplate getInstance() {
-		if(instance == null) {
+		if(instance == null) { // 객체를 재사용하기위한 싱글톤패턴
 			instance = new JDBCTemplate();
 		}
 		return instance;

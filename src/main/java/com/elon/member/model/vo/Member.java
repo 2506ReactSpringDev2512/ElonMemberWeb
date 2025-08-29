@@ -26,6 +26,20 @@ public class Member {
 		Address = address;
 		Hobby = hobby;
 	}
+	
+	
+
+	public Member(String memberId, String memberPwd, String email, String phone, String address, String hobby) {
+		super();
+		MemberId = memberId;
+		MemberPwd = memberPwd;
+		Email = email;
+		Phone = phone;
+		Address = address;
+		Hobby = hobby;
+	}
+
+
 
 	public Member() {};
 	

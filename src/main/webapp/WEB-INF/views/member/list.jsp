@@ -36,7 +36,8 @@
 		</tr>
 	</thead>
 		<tbody>
-			<c:forEach items="${mList }" var="member">
+			<c:forEach items="${mList }" var="member"> 
+			<!-- mList에 데이터가 있으면 forEach문을 돈다. 데이터가 없으면 동작을 안함-->
 				<tr>
 					<td>${member.memberId}</td>
 					<td>${member.memberName}</td>

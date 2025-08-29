@@ -31,8 +31,8 @@ public class DeleteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// index.jsp -> delete.jsp 페이지 이동
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/member/delete.jsp");
-		view.forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/member/delete.jsp")
+		.forward(request, response);
 	}
 
 	/**
@@ -40,7 +40,7 @@ public class DeleteServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// delete.jsp에서 삭제 버튼을 눌렀을 때 동작하도록
-		String memberId = request.getParameter("memberId");
+		String memberId = request.getParameter("memberId"); // "memberId" == delete.jsp에 있는 input의 name과 같다.
 		// 서블릿에서 getParameter 메소드의 전달값은 form 태그 안 input의 id 값을 적어야함.
 		MemberService mService = new MemberService(); 
 		int result = mService.deleteMember(memberId);

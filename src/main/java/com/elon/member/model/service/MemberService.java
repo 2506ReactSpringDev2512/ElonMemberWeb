@@ -14,7 +14,7 @@ public class MemberService {
 	private MemberDAO mDao;
 	
 	public MemberService() {
-		jdbcTemplate = JDBCTemplate.getInstance();
+		jdbcTemplate = JDBCTemplate.getInstance(); // 이미 생성된 객체를 재활용하기 위한 싱글톤 패턴
 		mDao = new MemberDAO();
 	}
 	
@@ -55,6 +55,20 @@ public class MemberService {
 		}
 		
 		return mList;
+	}
+
+	public int updateMember(Member member) {
+		int result = 0;
+		
+		try {
+			Connection conn = jdbcTemplate.getConnection();
+			result = mDao.updateMember(member, conn);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 	
 	
