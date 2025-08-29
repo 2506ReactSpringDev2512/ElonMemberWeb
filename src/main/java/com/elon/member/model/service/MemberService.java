@@ -2,6 +2,7 @@ package com.elon.member.model.service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 import com.elon.member.common.JDBCTemplate;
 import com.elon.member.model.dao.MemberDAO;
@@ -22,6 +23,30 @@ public class MemberService {
 			Connection conn = jdbcTemplate.getConnection();
 			result = mDao.insertMember(member, conn);
 		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public List<Member> selectList() {
+		List<Member> mList = null;
+		try {
+			Connection conn = jdbcTemplate.getConnection();
+			mList = mDao.selectList(conn);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return mList;
+	}
+
+	public int deleteMember(String memberName) {
+		int result = 0;
+		try {
+			Connection conn = jdbcTemplate.getConnection(); // JDBCTemplate이 연결 생성
+			result = mDao.deleteMember(memberName, conn);	// 삭제할 이름과 연결을 DAO 전달
+		} catch (Exception e) {
+			// TODO: handle exception
 			e.printStackTrace();
 		}
 		return result;
