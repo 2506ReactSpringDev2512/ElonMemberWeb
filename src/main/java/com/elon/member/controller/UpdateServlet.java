@@ -29,6 +29,17 @@ public class UpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// update.jsp 에서 아이디 입력에 아이디를 입력하면
+		String memberId = request.getParameter("memberId");
+		MemberService mService = new MemberService();
+		// 입력한 아이디로 데이터베이스에 데이터가 존재하는지 확인
+		Member member = mService.selectOneById(memberId);
+		if(member != null) {	// 만약 존재한다면
+			// update.jsp 에서 member 를 member 키로 사용할 수 있도록 
+			// request 객체에 저장해 준다
+			request.setAttribute("member", member);
+		}
+		
 		request.getRequestDispatcher("/WEB-INF/views/member/update.jsp")
 		.forward(request, response);
 	}
@@ -50,7 +61,7 @@ public class UpdateServlet extends HttpServlet {
 			// 성공 후 메인페이지로 이동, 추후 수정된 정보를 확인할 수 있는 페이지로 이동하도록 해야함.
 			response.sendRedirect("/");
 		}else {
-			request.setAttribute("errorMsg", "회원 정보 수정이 완료되지 않았습니다.");
+			request.setAttribute("errorMsg", "회원 정보 수정이 완료되지 않았습니다");
 			request.getRequestDispatcher("/WEB-INF/views/common/error.jsp")
 			.forward(request, response);
 		}
