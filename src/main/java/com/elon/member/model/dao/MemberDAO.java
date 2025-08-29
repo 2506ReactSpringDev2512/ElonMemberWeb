@@ -59,7 +59,7 @@ public class MemberDAO {
 			String Email = rset.getString("EMAIL");
 			String Phone = rset.getString("PHONE");
 			String Address = rset.getString("ADDRESS");
-			
+			 
 			Member member = new Member(memberId, memberName, Email, Phone, Address);
 			mList.add(member);
 		}
