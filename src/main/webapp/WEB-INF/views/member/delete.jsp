@@ -7,6 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<h1>회원 정보 삭제</h1>
+	<form action = "/member/delete" method = "post">
+	아이디 입력 : <input type = "text" name = "memberId" >
+	<input type = "submit" value = "삭제">
+	</form>
 
 </body>
 </html>
