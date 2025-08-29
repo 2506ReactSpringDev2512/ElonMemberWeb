@@ -21,8 +21,8 @@ public class MemberService {
 	public List<Member> selectList() {
 		List<Member> mList = null;
 		
-		Connection conn = jdbcTemplate.getConnection();
 		try {
+			Connection conn = jdbcTemplate.getConnection();
 			mList = mDao.selectList(conn);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -46,8 +46,8 @@ public class MemberService {
 
 	public int deleteMember(String memberId) {
 		int result = 0;
-		Connection conn = jdbcTemplate.getConnection();
 		try {
+			Connection conn = jdbcTemplate.getConnection();
 			result = mDao.deleteMember(memberId, conn);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -56,18 +56,18 @@ public class MemberService {
 		return result;
 	}
 
-	public int searchMember(String memberId) {
-		int result = 0;
+	public Member searchMember(String memberId) {
+		Member member = null;
 		
-		Connection conn = jdbcTemplate.getConnection();
 		try {
-			result = mDao.searchMember(memberId, conn);
+			Connection conn = jdbcTemplate.getConnection();
+			member = mDao.searchMember(memberId, conn);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		return result;
+		return member;
 	}
 	
 }
