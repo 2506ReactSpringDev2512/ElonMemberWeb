@@ -7,6 +7,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import com.elon.member.model.service.MemberService;
+import com.elon.member.model.vo.Member;
+
 /**
  * Servlet implementation class UpdateServlet
  */
@@ -26,16 +29,40 @@ public class UpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		// index.jsp에서 회원정보수정 누르면 동작함
+		request.getRequestDispatcher("/WEB-INF/views/member/update.jsp")
+		.forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+		// update.jsp에서 수정 버튼을 눌렀을때 동작함
+		request.setCharacterEncoding("UTF-8");
+		String memberId = request.getParameter("memberId");
+		String memberPwd = request.getParameter("memberPwd");
+		String memberName = request.getParameter("memberName");
+		String gender = request.getParameter("gender");
+		int age = Integer.parseInt(request.getParameter("age"));
+		String email = request.getParameter("email");
+		String phone = request.getParameter("phone");
+		String address = request.getParameter("address");
+		String hobby = request.getParameter("hobby");
+		Member member = new Member(memberId, memberPwd, memberName, gender, age, email, phone, address, hobby);
+		MemberService mService = new MemberService();
+		int result = mService.updateMember(member);
+		if(result > 0) {
+			// 성공
+			response.sendRedirect("/");
+		}else {
+			// 실패
+			request.setAttribute("errorMsg","회원 정보 수정이 완료되지 않았습니다.");
+			request.getRequestDispatcher("/WEB-INF/views/common/error.jsp")
+			.forward(request, response);
+		}
 	}
 
 }
