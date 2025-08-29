@@ -7,6 +7,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import com.elon.member.model.service.MemberService;
+import com.elon.member.model.vo.Member;
+
 /**
  * Servlet implementation class UpdateServlet
  */
@@ -19,23 +22,39 @@ public class UpdateServlet extends HttpServlet {
      */
     public UpdateServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String memberId 	= request.getParameter("memberId");
+		String memberPw		= request.getParameter("memberPw");
+		String memberName 	= request.getParameter("memberName");
+		String gender 		= request.getParameter("gender");
+		int age				= Integer.parseInt(request.getParameter("age"));
+		String email		= request.getParameter("email");
+		String phone		= request.getParameter("phone");
+		String address		= request.getParameter("address");
+		String hobby		= request.getParameter("hobby");
+		
+		Member member = new Member(memberId,memberPw, memberName, gender, age, email, phone,
+				 					address, hobby);
+		MemberService mService = new MemberService();
+		int result = mService.updateMember(member);
+		if(result > 0 ) {
+			response.sendRedirect("/");
+		}else {
+			//request.setAttribute(memberPW, mService);
+		}
+		
+	
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

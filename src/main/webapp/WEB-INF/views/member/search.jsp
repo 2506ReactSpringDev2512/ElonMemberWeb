@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원정보 검색 페이지</title>
 </head>
 <body>
-
+	<h1>회원 정보 검색</h1>
+	
 </body>
 </html>
