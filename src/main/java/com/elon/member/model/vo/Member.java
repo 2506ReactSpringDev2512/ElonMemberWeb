@@ -6,14 +6,14 @@ public class Member {
 	private String MemberId;
 	private String MemberPwd;
 	private String MemberName;
-	private char Gender;
+	private String Gender;
 	private int Age;
 	private String Email;
 	private String Phone;
 	private String Address;
 	private Date EnrollDate;
 	
-	public Member(String memberId, String memberPwd, String memberName, char gender, int age, String email,
+	public Member(String memberId, String memberPwd, String memberName, String gender, int age, String email,
 			String phone, String address, String hobby) {
 		super();
 		MemberId = memberId;
@@ -26,9 +26,11 @@ public class Member {
 		Address = address;
 		Hobby = hobby;
 	}
-	
-	
 
+	public Member() {};
+	
+	
+	
 	public Member(String memberId, String memberPwd, String email, String phone, String address, String hobby) {
 		super();
 		MemberId = memberId;
@@ -39,11 +41,7 @@ public class Member {
 		Hobby = hobby;
 	}
 
-
-
-	public Member() {};
-	
-	public Member(String memberId, String memberPwd, String memberName, char gender, int age, String email,
+	public Member(String memberId, String memberPwd, String memberName, String gender, int age, String email,
 			String phone, String address, String hobby, Date enrollDate) {
 		super();
 		MemberId = memberId;
@@ -77,10 +75,10 @@ public class Member {
 	public void setMemberName(String memberName) {
 		MemberName = memberName;
 	}
-	public char getGender() {
+	public String getGender() {
 		return Gender;
 	}
-	public void setGender(char gender) {
+	public void setGender(String gender) {
 		Gender = gender;
 	}
 	public int getAge() {
