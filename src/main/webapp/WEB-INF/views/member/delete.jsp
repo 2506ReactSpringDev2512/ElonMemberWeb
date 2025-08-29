@@ -5,6 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>회원 정보 삭제</title>
+<style>
+body { text-align: center; }
+table { margin: 0 auto; border-collapse: collapse; }
+</style>
 </head>
 <body>
 	<h1>회원 정보 삭제</h1>

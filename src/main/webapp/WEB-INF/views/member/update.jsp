@@ -5,21 +5,29 @@
 <head>
 <meta charset="UTF-8">
 <title>회원 정보 수정</title>
+<style>
+body { text-align: center; }
+table { margin: 20px auto; border-collapse: collapse; }
+td { padding: 8px; text-align: left; }
+td:first-child { text-align: right; padding-right: 15px; font-weight: bold; }
+input[type="submit"] { margin-top: 10px; padding: 8px 20px; }
+</style>
 </head>
 <body>
 	<h1>회원 정보 수정</h1>
 	<form action="/member/update" method="post">
-		아이디 : <input type="text" name="memberId"> <br>
-		비밀번호 : <input type="password" name="memberPwd"> <br>
-		이름 : <input type="text" name="memberName"> <br>
-		성별 : 남<input type="radio" name="gender" value="M"> 
-				여 <input type="radio" name="gender" value="F"> <br>
-		나이 : <input type="text" name="age"> <br>
-		이메일 : <input type="text" name="email"> <br>
-		전화번호 : <input type="text" name="phone"> <br>
-		주소 : <input type="text" name="address"> <br>
-		취미 : <input type="text" name="hobby"> <br>
-		<input type="submit" value="수정">
+		<table>
+			<tr><td>아이디 :</td><td><input type="text" name="memberId"></td></tr>
+			<tr><td>비밀번호 :</td><td><input type="password" name="memberPwd"></td></tr>
+			<tr><td>이름 :</td><td><input type="text" name="memberName"></td></tr>
+			<tr><td>성별 :</td><td>남<input type="radio" name="gender" value="M"> 여<input type="radio" name="gender" value="F"></td></tr>
+			<tr><td>나이 :</td><td><input type="text" name="age"></td></tr>
+			<tr><td>이메일 :</td><td><input type="text" name="email"></td></tr>
+			<tr><td>전화번호 :</td><td><input type="text" name="phone"></td></tr>
+			<tr><td>주소 :</td><td><input type="text" name="address"></td></tr>
+			<tr><td>취미 :</td><td><input type="text" name="hobby"></td></tr>
+			<tr><td colspan="2"><input type="submit" value="수정"></td></tr>
+		</table>
 	</form>
 </body>
 </html>

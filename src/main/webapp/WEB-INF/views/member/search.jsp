@@ -7,7 +7,10 @@
 <meta charset="UTF-8">
 <title>회원 검색</title>
 <style>
-table {border 1px solid black};
+body { text-align: center; }
+table { margin: 20px auto; border-collapse: collapse; border: 2px solid #333; }
+th, td { padding: 10px; border: 1px solid #ccc; }
+th { background-color: #f4f4f4; font-weight: bold; }
 </style>
 </head>
 <body>

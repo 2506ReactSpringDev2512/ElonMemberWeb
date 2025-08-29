@@ -6,6 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>회원 전체 정보</title>
+<style>
+body { text-align: center; }
+table { margin: 0 auto; border-collapse: collapse; }
+</style>
 </head>
 <body>
 	<h1>회원 전체정보</h1>
