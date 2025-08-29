@@ -27,7 +27,14 @@
 				</tr>
 				<tr>
 					<th>성별</th>
-					<td>${member.gender }</td>
+					<td>
+						<c:if test="${member.gender eq 'M' }">
+							남자
+						</c:if>
+						<c:if test="${member.gender eq 'F' }">
+							여자
+						</c:if>
+					</td>
 				</tr>
 				<tr>
 					<th>나이</th>
