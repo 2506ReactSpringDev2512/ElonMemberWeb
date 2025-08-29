@@ -4,9 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원 정보 삭제</title>
 </head>
 <body>
-
+	<h1>회원 정보 삭제</h1>
+	<form action="/member/delete" method="post">
+		삭제할 아이디를 입력하세요 : <input type="text" name="memberId"> <br>
+		<input type="submit" value="삭제">
+	</form>
 </body>
 </html>
