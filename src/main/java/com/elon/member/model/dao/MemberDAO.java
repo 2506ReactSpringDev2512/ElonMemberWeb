@@ -94,5 +94,25 @@ public class MemberDAO {
 		conn.close();
 		return result;
 	}
+
+	public Member searchMember(String memberId, Connection conn) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Member member = null;
+		String query = "SELECT * FROM MEMBER_TBL WHERE MEMBER_ID = ?";
+		
+		pstmt = conn.prepareStatement(query);
+		pstmt.setString(1, memberId);
+		rset = pstmt.executeQuery();
+		if(rset.next()) {
+			member = rsetToMember(rset);
+		}
+		rset.close();
+		pstmt.close();
+		conn.close();
+		return member;
+	}
+
+	
 	
 }
