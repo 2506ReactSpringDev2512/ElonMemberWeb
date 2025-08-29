@@ -27,6 +27,7 @@ public class Member {
 		Hobby = hobby;
 	}
 
+	public Member() {};
 	
 	public Member(String memberId, String memberPwd, String memberName, char gender, int age, String email,
 			String phone, String address, String hobby, Date enrollDate) {
