@@ -4,9 +4,22 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원 가입</title>
 </head>
 <body>
-
+	<h1>회원가입</h1>
+	<form action="/member/signup" method = "post">
+	아이디 : <input type = "text" name = "memberId"> <br>
+	비밀번호 : <input type = "text" name = "memberPw"> <br>
+	이름 : <input type = "text" name = "memberName"> <br>
+	성별 : 남<input type = "radio" name = "gender" value = "M"> 
+			여<input type = "radio" name = "gender" value ="F"> <br>
+	나이 : <input type = "number" name = "age"> <br>
+	이메일 : <input type = "text" name = "email"> <br>
+	전화번호 : <input type = "text" name = "phone"> <br>
+	주소 : <input type = "text" name = "adderss"> <br>
+	취미 : <input type = "text" name = "hobby"> <br>
+	<input type = "submit" value = "가입">
+	</form>
 </body>
 </html>
