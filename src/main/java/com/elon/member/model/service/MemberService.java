@@ -18,7 +18,6 @@ public class MemberService {
 
 	public int signup(Member member) {
 		int result = 0;
-		
 		try {
 			Connection conn = jdbcTemplate.getConnection();
 			result = mDao.signupMember(member, conn);
@@ -26,8 +25,18 @@ public class MemberService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 		return result;
 	}
 
+	public int delete(String memberId) {
+		int result = 0;
+		try {
+			Connection conn = jdbcTemplate.getConnection();
+			result = mDao.deleteMember(memberId, conn);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
 }
