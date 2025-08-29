@@ -19,9 +19,15 @@ public class MemberService {
 	}
 	
 	public List<Member> selectList() {
-		Connection conn = jdbcTemplate.getConnection();
 		List<Member> mList = null;
-		mList = mDao.selectList(conn);
+		
+		Connection conn = jdbcTemplate.getConnection();
+		try {
+			mList = mDao.selectList(conn);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		return mList;
 	}
