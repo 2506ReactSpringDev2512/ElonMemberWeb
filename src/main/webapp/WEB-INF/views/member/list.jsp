@@ -18,7 +18,7 @@
 			<col style="width: 20%;">
 			<col style="width: 13%;">
 			<col style="width: auto;">
-			<col style="width: 20%;">
+			<col style="width: 11%;">
 			<col style="width: 12%;">
 		</colgroup>
 		<thead>
