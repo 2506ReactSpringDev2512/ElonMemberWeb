@@ -30,8 +30,20 @@ public class UpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/member/update.jsp");
-		view.forward(request, response);
+		String memberId = request.getParameter("memberId");
+		System.out.println(memberId);
+		if (memberId == null || memberId.trim().isEmpty()) {
+	        request.setAttribute("errorMsg", "회원 아이디를 입력하세요.");
+	        request.getRequestDispatcher("/WEB-INF/views/member/update.jsp").forward(request, response);
+	        return;
+	    }
+		MemberService mService = new MemberService();
+		Member member = mService.selectOneById(memberId);
+		
+		if(member != null) {
+			request.setAttribute("member", member);
+		} 
+		request.getRequestDispatcher("/WEB-INF/views/member/update.jsp").forward(request, response);
 	}
 
 	/**
@@ -44,13 +56,13 @@ public class UpdateServlet extends HttpServlet {
 		String Email = request.getParameter("Email");
 		String Phone = request.getParameter("Phone");
 		String Address = request.getParameter("Address");
+		System.out.println(memberName);
 		Member member = new Member(memberId, memberPwd, memberName, Email, Phone, Address);
 		MemberService mService = new MemberService();
 		int result = mService.modifyMember(member);
 		if(result > 0) {
 			response.sendRedirect("/");
 		}else {
-			// 에러페이지로 이동
 			request.setAttribute("errorMsg", "회원 정보 수정이 완료되지 않았습니다.");
 			request.getRequestDispatcher("/WEB-INF/views/common/error.jsp")
 			.forward(request, response);
