@@ -53,7 +53,7 @@ table { margin: 0 auto; border-collapse: collapse; }
 					<td>${member.enrollDate }</td>
 					<td>
 						<button onclick="location.href='/member/update?memberId=${member.memberId}'">수정</button> 
-						<button onclick="location.href='/member/delete'">삭제</button>
+						<button onclick="if(confirm('${member.memberId}를 삭제하시겠습니까?')) location.href='/member/delete'">삭제</button>
 					</td>
 				</tr>
 			</c:forEach>
