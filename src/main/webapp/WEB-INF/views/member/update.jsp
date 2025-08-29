@@ -7,14 +7,40 @@
 <title>회원 정보 수정</title>
 </head>
 <body>
-	<form action="/member/update" method = "post">
-		정보를 수정할 회원 아이디 입력 : <input type="text" name="memberId"> <br>
-		수정할 비밀번호 : <input type="text" name="memberPwd"> <br>
-		수정할 이름 : <input type="text" name="memberName"> <br>
-		수정할 이메일 : <input type="text" name="Email"> <br>
-		수정할 전화번호 : <input type="text" name="Phone"> <br>
-		수정할 주소 : <input type="text" name="Address"> <br>
-		<input type="submit" value="수정">
+	<form action="/member/update" method="post">
+		<table>
+			<tbody>
+				<tr>
+					<th>아이디</th>
+					<td><input type="text" name="memberId">
+				</tr>
+				<tr>
+					<th>비밀번호</th>
+					<td><input type="password" name="memberPwd">
+				</tr>
+				<tr>
+					<th>이메일</th>
+					<td><input type="text" name="email">
+				</tr>
+				<tr>
+					<th>전화번호</th>
+					<td><input type="text" name="phone">
+				</tr>
+				<tr>
+					<th>주소</th>
+					<td><input type="text" name="address">
+				</tr>
+				<tr>
+					<th>취미</th>
+					<td><input type="text" name="hobby">
+				</tr>
+				<tr>
+					<td colspan="2">
+						<input type="submit" value="수정">
+					</td>
+				</tr>
+			</tbody>
+		</table>
 	</form>
 </body>
 </html>
