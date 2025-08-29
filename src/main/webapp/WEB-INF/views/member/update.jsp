@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,14 +13,14 @@
 		아이디 입력 : <input type="text" name="memberId">
 		<input type="submit" value="입력">
 	</form>
-	<!--  member가 있으면 수정창이 보이고 없으면 안보임 -->
-	<c:if test="{member != null}">
+<!-- 	member가 있으면 수정창이 보이고 없으면 안보임 -->
+	<c:if test="${member != null }">
 		<form action="/member/update" method="post">
 			<table>
 				<tbody>
 					<tr>
 						<th>아이디</th>
-						<td><input type="text" name="memberId" value="${member.memberId }">
+						<td><input type="text" name="memberId" value="${member.memberId }" readonly>
 					</tr>
 					<tr>
 						<th>비밀번호</th>
