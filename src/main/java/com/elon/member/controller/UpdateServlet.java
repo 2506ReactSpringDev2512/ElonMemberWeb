@@ -7,6 +7,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import com.elon.member.model.service.MemberService;
+import com.elon.member.model.vo.Member;
+
 /**
  * Servlet implementation class UpdateServlet
  */
@@ -26,16 +29,31 @@ public class UpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.getRequestDispatcher("/WEB-INF/views/member/update.jsp")
+		.forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String memberId 	= request.getParameter("memberId");
+		String memberPwd 	= request.getParameter("memberPwd");
+		String email 		= request.getParameter("email");
+		String phone 		= request.getParameter("phone");
+		String address 		= request.getParameter("address");
+		String hobby 		= request.getParameter("hobby");
+		Member member = new Member(memberId, memberPwd, email, phone, address, hobby);
+		MemberService mService = new MemberService();
+		int result = mService.updateMember(member);
+		if(result > 0) {
+			// 성공 후 메인페이지로 이동, 추후 수정된 정보를 확인할 수 있는 페이지로 이동하도록 해야함.
+			response.sendRedirect("/");
+		}else {
+			request.setAttribute("errorMsg", "회원 정보 수정이 완료되지 않았습니다.");
+			request.getRequestDispatcher("/WEB-INF/views/common/error.jsp")
+			.forward(request, response);
+		}
 	}
 
 }
