@@ -50,5 +50,17 @@ public class MemberService {
 		}
 		return mList;
 	}
+	public Member selectOneById(String memberId) {
+		Member member = null;
+		try {
+			Connection conn = jdbcTemplate.getConnection();
+			member = mDao.selectOneById(memberId, conn);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return member;
+	}
+
+	
 
 }
