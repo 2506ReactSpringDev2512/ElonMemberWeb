@@ -7,6 +7,7 @@
 <title>회원가입</title>
 </head>
 <body>
+<jsp:include page="../common/header.jsp"></jsp:include>
 	<h1>회원가입</h1>
 	<form action="/member/signup" method="post">
 		아이디 : <input type="text" name="memberId"> <br>
@@ -21,5 +22,6 @@
 		취미 : <input type="text" name="hobby"> <br>
 		<input type="submit" value="가입">
 	</form>
+	<jsp:include page="../common/footer.jsp"></jsp:include>
 </body>
 </html>

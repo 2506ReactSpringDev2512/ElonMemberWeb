@@ -32,6 +32,7 @@
 				<th>주소</th>
 				<th>취미</th>
 				<th>가입일</th>
+				<th>관리</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -46,9 +47,23 @@
 					<td>${member.address }</td>
 					<td>${member.hobby }</td>
 					<td>${member.enrollDate }</td>
+					<td colspan="2">
+						<input type="submit" value="수정">
+					</td>
+					<td colspan="2">
+						<input type="submit" value="삭제">
+					</td>
 				</tr>
+
+					
 			</c:forEach>
 		</tbody>
 	</table>
+	<select>
+		<option>아이디</option>
+		<option>이름</option>
+	</select>
+	<input type="text" name="" placeholder="검색어를 입력하세요">
+	<input type="submit" value="검색" >
 </body>
 </html>
