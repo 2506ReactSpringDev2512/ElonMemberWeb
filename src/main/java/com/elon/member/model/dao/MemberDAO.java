@@ -48,6 +48,25 @@ public class MemberDAO {
  		return member;
 	}
 
+	public Member checkLogin(Member member, Connection conn) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Member mOne = null;
+		String query = "SELECT * FROM MEMBER_TBL WHERE MEMBER_ID = ? AND MEMBER_PWD = ?";
+		
+		pstmt = conn.prepareStatement(query);
+		pstmt.setString(1, member.getMemberId());
+		pstmt.setString(2, member.getMemberPwd());
+		rset = pstmt.executeQuery();
+		if(rset.next()) {
+			mOne = rsetToMember(rset);
+		}
+		rset.close();
+		pstmt.close();
+		conn.close();
+ 		return mOne;
+	}
+
 	private Member rsetToMember(ResultSet rset) throws SQLException {
 		String memberId   = rset.getString("MEMBER_ID");
 		String memberPwd  = rset.getString("MEMBER_PWD");

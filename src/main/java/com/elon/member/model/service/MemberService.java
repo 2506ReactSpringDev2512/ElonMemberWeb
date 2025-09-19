@@ -39,6 +39,17 @@ public class MemberService {
 		return member;
 	}
 
+	public Member checkLogin(Member member) {
+		Member mOne = null;
+		try {
+			Connection conn = jdbcTemplate.getConnection();
+			mOne = mDao.checkLogin(member, conn);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return mOne;
+	}
+
 	public int insertMember(Member member) {
 		int result = 0;
 		try {
